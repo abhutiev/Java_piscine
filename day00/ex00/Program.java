@@ -1,10 +1,10 @@
 public class Program {
 
-//	private static int sumOfDigitsigits(int num) {
+//	private static int sumOfDigits(int num) {
 //		if (num < 10)
 //			return num;
 //		else
-//			return num % 10 + last_digit(num / 10);
+//			return num % 10 + sumOfDigits(num / 10);
 //	}
 
 	private static int sumOfDigitsigitsOlivierEdition(int number) {
