@@ -1,14 +1,13 @@
 public class Program {
 
-	public static int last_digit(int num) {
-		if (num < 10)
-			return num;
-		else
-			return num % 10 + last_digit(num / 10);
-	}
+//	private static int sumOfDigitsigits(int num) {
+//		if (num < 10)
+//			return num;
+//		else
+//			return num % 10 + last_digit(num / 10);
+//	}
 
-	public static void main(String[] args) {
-		int number = 151511;
+	private static int sumOfDigitsigitsOlivierEdition(int number) {
 		int result = 0;
 
 		result += number / 100000;
@@ -23,7 +22,13 @@ public class Program {
 		number = number % 10;
 		result += number / 10;
 		result += number % 10;
-//		result = last_digit(number);
- 		System.out.print(result);
+		return result;
+	}
+
+	public static void main(String[] args) {
+		int number = 999999;
+//		int result;
+//		result = sumOfDigits(number);
+ 		System.out.print(sumOfDigitsigitsOlivierEdition(number));
 	}
 }
