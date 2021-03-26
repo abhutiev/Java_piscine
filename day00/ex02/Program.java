@@ -38,5 +38,6 @@ public class Program {
 				counter++;
 			}
 		}
+		input.close();
 	}
 }

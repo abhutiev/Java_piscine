@@ -29,5 +29,7 @@ public class Program {
 		else {
 			System.out.printf("false %d", result);
 		}
+		input.close();
+
 	}
 }

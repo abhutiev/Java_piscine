@@ -2,40 +2,67 @@ import java.util.Scanner;
 import java.lang.String;
 
 public class Program {
-
-	private static String getValidatedLine (Scanner input) {
-		String inputLine;
-
-		inputLine = input.nextLine();
-		if (inputLine.equals("42"))
-			System.exit(-1);
-		if (!inputLine.regionMatches(0, "Week", 0, 4)) {
-			System.out.println("Illegal Argument");
-			System.exit(-1);
+	private static void printArrow(long grade) {
+		for (int i = 0; i < grade; i++) {
+			System.out.printf("=");
 		}
-		return inputLine;
+		System.out.println(">");
 	}
+	private static void printProgress (long grades, int weekIndex) {
+		long tenInPower = 1;
 
-	private static int getNumberofWeek(String weekLine) {
-		String numberInString;
-		numberInString = weekLine.split(" ")[1];
-		if (numberInString.length() == 1) {
-			return numberInString.charAt(0) - 48;
+		for (int i = 1; i < weekIndex - 1; i++) {
+			tenInPower *=10;
 		}
-		else {
-			return numberInString.charAt(1) - 48 + 10;
+		for (int i = 0; grades > 0; i++) {
+			System.out.printf("Week %d ", i + 1);
+			printArrow(grades / tenInPower);
+			grades %= tenInPower;
+			tenInPower /= 10;
 		}
 	}
+	private static int getLowest (Scanner input) {
+		int lowestGrade = input.nextInt();
+		int buf;
 
+		for (int i = 0; i < 4; i++) {
+			buf = input.nextInt();
+			if (buf < lowestGrade)
+				lowestGrade = buf;
+		}
+		return lowestGrade;
+	}
 	public static void main(String[] args) {
-		Scanner input = new Scanner (System.in);
+		Scanner input = new Scanner(System.in);
 		String weekLine;
-		int numberOfWeek = -1;
+		int weekIndex = 1;
+		int numberOfWeek;
+		long grades = 0;
+
 		while (true) {
-			weekLine = getValidatedLine(input);
-			numberOfWeek = getNumberofWeek(weekLine);
-			System.out.println(numberOfWeek);
+			if (input.hasNext("42"))
+				break;
+			else if (input.hasNext("Week")) {
+				weekLine = input.next("Week");
+				if (input.hasNextInt()) {
+					numberOfWeek = input.nextInt();
+					if (weekIndex != numberOfWeek) {
+						System.out.println("Invalid Argument");
+						System.exit(-1);
+					}
+					grades = grades * 10 + getLowest(input);
+					weekIndex++;
+				}
+				else {
+					weekLine = input.nextLine();
+					continue;
+				}
+			}
+			else
+				weekLine = input.nextLine();
 		}
+		printProgress(grades, weekIndex);
+		input.close();
 	}
 
 }
