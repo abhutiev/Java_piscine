@@ -40,7 +40,7 @@ public class Program {
 		long grades = 0;
 
 		while (true) {
-			if (weekIndex == 19 || input.hasNext("42"))
+			if (weekIndex== 19 || input.hasNext("42"))
 				break;
 			else if (input.hasNext("Week")) {
 				weekLine = input.next("Week");
